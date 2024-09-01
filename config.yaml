@@ -1,0 +1,150 @@
+board: FluidNCC-v2.0.1
+name: CNC-3018
+
+spi:
+  miso_pin: gpio.19
+  mosi_pin: gpio.23
+  sck_pin: gpio.18
+
+sdcard:
+  cs_pin: gpio.5
+  card_detect_pin: NO_PIN
+  frequency_hz: 8000000
+
+i2c0:
+  sda_pin: gpio.14
+  scl_pin: gpio.13
+
+oled:
+  i2c_num: 0
+  i2c_address: 60
+  width: 128
+  height: 64
+  radio_delay_ms: 1000
+
+stepping:
+  engine: RMT
+  idle_ms: 255
+  pulse_us: 2
+  dir_delay_us: 1
+  disable_delay_us: 0
+
+uart2:
+  txd_pin: gpio.17
+  rxd_pin: gpio.16
+  baud: 115200
+  mode: 8N1
+
+axes:
+  shared_stepper_disable_pin: gpio.22
+  x:
+    steps_per_mm: 800
+    max_rate_mm_per_min: 1000
+    acceleration_mm_per_sec2: 50
+    max_travel_mm: 275
+    soft_limits: false
+    motor0:
+      tmc_2209:
+        uart_num: 2
+        addr: 0
+        cs_pin: NO_PIN
+        r_sense_ohms: 0.11
+        run_amps: 1
+        homing_amps: 0.75
+        hold_amps: 0.5
+        microsteps: 16
+        stallguard: 0
+        stallguard_debug: false
+        toff_disable: 0
+        toff_stealthchop: 5
+        toff_coolstep: 3
+        run_mode: StealthChop
+        homing_mode: StealthChop
+        use_enable: false
+        direction_pin: gpio.4
+        step_pin: gpio.2
+        disable_pin: NO_PIN
+  y:
+    steps_per_mm: 800
+    max_rate_mm_per_min: 1000
+    acceleration_mm_per_sec2: 50
+    max_travel_mm: 180
+    soft_limits: false
+    motor0:
+      tmc_2209:
+        uart_num: 2
+        addr: 1
+        cs_pin: NO_PIN
+        r_sense_ohms: 0.11
+        run_amps: 1
+        homing_amps: 0.75
+        hold_amps: 0.5
+        microsteps: 16
+        stallguard: 0
+        stallguard_debug: false
+        toff_disable: 0
+        toff_stealthchop: 5
+        toff_coolstep: 3
+        run_mode: StealthChop
+        homing_mode: StealthChop
+        use_enable: true
+        direction_pin: 'gpio.15:low'
+        step_pin: gpio.12
+        disable_pin: NO_PIN
+  z:
+    steps_per_mm: 800
+    max_rate_mm_per_min: 400
+    acceleration_mm_per_sec2: 40
+    max_travel_mm: 50
+    soft_limits: false
+    motor0:
+      tmc_2209:
+        uart_num: 2
+        addr: 2
+        cs_pin: NO_PIN
+        r_sense_ohms: 0.11
+        run_amps: 1
+        homing_amps: 0.75
+        hold_amps: 0.5
+        microsteps: 16
+        stallguard: 0
+        stallguard_debug: false
+        toff_disable: 0
+        toff_stealthchop: 5
+        toff_coolstep: 3
+        run_mode: StealthChop
+        homing_mode: StealthChop
+        use_enable: true
+        direction_pin: gpio.26
+        step_pin: gpio.27
+        disable_pin: NO_PIN
+
+pwm:
+  pwm_hz: 5000
+  direction_pin: NO_PIN
+  output_pin: gpio.32
+  enable_pin: NO_PIN
+  disable_with_s0: false
+  s0_with_disable: true
+  spinup_ms: 1000
+  spindown_ms: 1000
+  tool_num: 0
+  speed_map: 0=0.000% 1000=20.000% 2000=30% 6000=50% 12000=100.000%
+  off_on_alarm: false
+
+control:
+  safety_door_pin: NO_PIN
+  reset_pin: NO_PIN
+  feed_hold_pin: NO_PIN
+  cycle_start_pin: NO_PIN
+  macro0_pin: NO_PIN
+  macro1_pin: NO_PIN
+  macro2_pin: NO_PIN
+  macro3_pin: NO_PIN
+  fault_pin: NO_PIN
+  estop_pin: NO_PIN
+
+probe:
+  pin: 'gpio.35:low'
+  toolsetter_pin: NO_PIN
+  check_mode_start: true
